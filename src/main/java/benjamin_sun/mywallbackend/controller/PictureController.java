@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/picture")
@@ -54,5 +55,21 @@ public class PictureController {
         }
     }
 
+    @GetMapping("/getAllByLatest")
+    @ResponseBody
+    public List<Picture> getAllByLatest(){
+        return pictureService.selectAllByLatest();
+    }
 
+    @GetMapping("/getAllByRandom")
+    @ResponseBody
+    public List<Picture> getAllByRandom(){
+        return pictureService.selectAllByRandom();
+    }
+
+    @GetMapping("/getAllByFavorTime")
+    @ResponseBody
+    public List<Picture> getAllByFavorTime(){
+        return pictureService.selectAllByFavorTimes();
+    }
 }
