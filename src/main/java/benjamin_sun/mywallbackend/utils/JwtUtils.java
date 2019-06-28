@@ -25,7 +25,7 @@ public class JwtUtils {
         SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
         return key;
     }
-    public static String createJWT(String id, String subject, long ttlMillis) {
+    public static String createJWT(String subject, long ttlMillis) {
         //jjwt已经发封装好了所有的请求头，这里是指定签名算法
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         //生成jwt的时间
@@ -33,7 +33,7 @@ public class JwtUtils {
         Date now = new Date(nowMillis);
         //获取服务器端的密钥，这个不能贡献出去，贡献出去后就可以随意伪造了
         SecretKey secretKey = generalKey();
-        JwtBuilder builder = Jwts.builder().setId(id).setSubject(subject).setIssuedAt(now).signWith(signatureAlgorithm,
+        JwtBuilder builder = Jwts.builder().setSubject(subject).setIssuedAt(now).signWith(signatureAlgorithm,
                 secretKey);
         if (ttlMillis >= 0) {
             long expMillis = nowMillis + ttlMillis;

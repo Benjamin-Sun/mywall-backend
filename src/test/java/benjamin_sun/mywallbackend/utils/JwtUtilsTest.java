@@ -13,7 +13,7 @@ public class JwtUtilsTest extends MywallBackendApplicationTests{
     public void generalKey(){
         String a = null;
         try {
-            a=JwtUtils.createJWT("123", "456", 20 * 60 * 1000);
+            a=JwtUtils.createJWT( "456", 20 * 60 * 1000);
             System.out.println(a);
             System.out.println();
             Claims d =JwtUtils.parseJWT(a);

@@ -8,9 +8,11 @@ public interface UserService {
 
     List<User> getAll();
 
-    User getOne(String id);
+    User getOneById(String id);
 
-    void insert(User user);
+    String insert(User user);
 
     void deleteById(String id);
+
+    String getTokenByName(String username, String userpwd);
 }

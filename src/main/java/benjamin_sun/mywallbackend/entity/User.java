@@ -99,7 +99,8 @@ public class User {
         this.userImg = userImg;
     }
 
-    public User(String userName, String userPwd, Integer userAge, Integer userSex, String userDisc, Integer userCate, String userImg) {
+    public User(String userId, String userName, String userPwd, Integer userAge, Integer userSex, String userDisc, Integer userCate, String userImg) {
+        this.userId = userId;
         this.userName = userName;
         this.userPwd = userPwd;
         this.userAge = userAge;
@@ -116,6 +117,8 @@ public class User {
         this.userSex = userSex;
         this.userCate = userCate;
     }
+
+
 
     public User() {
     }
