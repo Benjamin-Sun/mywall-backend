@@ -45,7 +45,7 @@ public class UserController {
     /**
      * 添加用户，同时验证用户名唯一性
      * @param user
-     * @return
+     * @return 添加信息
      */
     @PostMapping("/addUser")
     @ResponseBody
