@@ -12,6 +12,9 @@ import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
+
+    private static final String AES_PWD = "123456";
+
     @Autowired
     UserRepository userRepository;
 
@@ -30,7 +33,7 @@ public class UserServiceImp implements UserService {
         if (userRepository.selectByUserName(user.getUserName()) != null){
             return "用户名已存在";
         }else {
-            user.setUserPwd(AesUtils.encrypt(user.getUserPwd(), "123456"));
+            user.setUserPwd(AesUtils.encrypt(user.getUserPwd(), AES_PWD));
             userRepository.save(user);
             return "添加成功";
         }
@@ -44,10 +47,11 @@ public class UserServiceImp implements UserService {
     @Override
     public String getTokenByName(String username, String userpwd){
         User user = userRepository.selectByUserName(username);
-        if (user.getUserPwd() == userpwd){
+        String userRealPwd = AesUtils.decrypt(user.getUserPwd(), AES_PWD);
+        if (userRealPwd.equals(userpwd)){
             return JwtUtils.createJWT(username, 20 * 60 * 1000);
         }else {
-            return "wrong password";
+            return "wrong password " + userRealPwd + " " + userpwd + "\n" + user;
         }
     }
 }
