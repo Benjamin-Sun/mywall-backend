@@ -48,7 +48,7 @@ public class PictureController {
             pictureService.insert(picture);
             return "添加成功";
         } catch (ExpiredJwtException e){
-            return "token过期，无法添加";
+            return "token过期，请重新登录";
         } catch (IllegalArgumentException e){
             return "请先登录";
         } catch (Exception e){
@@ -73,5 +73,28 @@ public class PictureController {
     @ResponseBody
     public List<Picture> getAllByFavorTime(){
         return pictureService.selectAllByFavorTimes();
+    }
+
+    @GetMapping("/getOnePicture")
+    @ResponseBody
+    public Picture getOne(String picId){
+        return pictureService.getOne(picId);
+    }
+
+    @GetMapping("/deleteThisPicture")
+    @ResponseBody
+    public String deleteById(String picId, HttpServletRequest request){
+        try {
+            String token = request.getHeader("Authorization");
+            JwtUtils.parseJWT(token);
+
+            pictureService.deleteById(picId);
+            return "删除成功";
+        } catch (ExpiredJwtException e){
+            e.printStackTrace();
+            return "token过期,请重新登录";
+        } catch (Exception e){
+            return "删除失败";
+        }
     }
 }

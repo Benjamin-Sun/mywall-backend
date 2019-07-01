@@ -16,17 +16,17 @@ public class PictureServiceImp implements PictureService {
 
     @Override
     public List<Picture> selectAllByLatest() {
-        return pictureRepository.findAll();
+        return pictureRepository.selectAllByLatest();
     }
 
     @Override
     public List<Picture> selectAllByRandom() {
-        return pictureRepository.findAll();
+        return pictureRepository.selectAllByRandom();
     }
 
     @Override
     public List<Picture> selectAllByFavorTimes() {
-        return pictureRepository.findAll();
+        return pictureRepository.selectAllByFavorTimes();
     }
 
     @Override

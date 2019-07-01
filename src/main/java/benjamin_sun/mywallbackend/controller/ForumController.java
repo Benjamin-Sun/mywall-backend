@@ -2,9 +2,12 @@ package benjamin_sun.mywallbackend.controller;
 
 import benjamin_sun.mywallbackend.entity.Forum;
 import benjamin_sun.mywallbackend.service.ForumService;
+import benjamin_sun.mywallbackend.utils.JwtUtils;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -44,13 +47,40 @@ public class ForumController {
 
     @PostMapping("/add")
     @ResponseBody
-    public String addForum(Forum forum){
+    public String addForum(Forum forum, HttpServletRequest request){
         try {
+            String token = request.getHeader("Authorization");
+            JwtUtils.parseJWT(token);
+
             forumService.insert(forum);
             return "添加成功";
+        } catch (ExpiredJwtException e){
+            e.printStackTrace();
+            return "token过期，请重新登陆";
         } catch (Exception e){
             e.printStackTrace();
             return "添加失败";
+        }
+    }
+
+    @GetMapping("/deleteThisForum")
+    @ResponseBody
+    public String deleteById(String forumId, HttpServletRequest request){
+        try {
+            String token = request.getHeader("Authorization");
+            JwtUtils.parseJWT(token);
+
+            forumService.deleteById(forumId);
+            return "删除成功";
+        } catch (ExpiredJwtException e){
+            e.printStackTrace();
+            return "token过期，请重新登录";
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return "请选择图片";
+        } catch (Exception e){
+            e.printStackTrace();
+            return "删除失败";
         }
     }
 }
