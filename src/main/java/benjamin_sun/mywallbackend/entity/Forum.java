@@ -15,6 +15,9 @@ public class Forum implements Serializable {
     @Column(length = 32)
     private String forumId;
 
+    @Column(name = "forumName")
+    private String forumName;
+
     @Column(name = "userId")
     private String userId;
 
@@ -36,6 +39,14 @@ public class Forum implements Serializable {
 
     public void setForumId(String forumId) {
         this.forumId = forumId;
+    }
+
+    public String getForumName() {
+        return forumName;
+    }
+
+    public void setForumName(String forumName) {
+        this.forumName = forumName;
     }
 
     public String getUserId() {
@@ -78,7 +89,9 @@ public class Forum implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Forum(String userId, String picId, String messageDisc, Date createTime, Date updateTime) {
+    public Forum(String forumId, String forumName, String userId, String picId, String messageDisc, Date createTime, Date updateTime) {
+        this.forumId = forumId;
+        this.forumName = forumName;
         this.userId = userId;
         this.picId = picId;
         this.messageDisc = messageDisc;

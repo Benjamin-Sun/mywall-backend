@@ -22,7 +22,6 @@ public class PictureController {
 
     /**
      * 上传图片
-     *
      * @param picName
      * @param picCate
      * @param userId
@@ -50,7 +49,10 @@ public class PictureController {
             return "添加成功";
         } catch (ExpiredJwtException e){
             return "token过期，无法添加";
+        } catch (IllegalArgumentException e){
+            return "请先登录";
         } catch (Exception e){
+            e.printStackTrace();
             return "添加失败";
         }
     }
