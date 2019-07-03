@@ -11,6 +11,7 @@
     <groupId>Benjamin_Sun</groupId>
     <artifactId>mywall-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>mywall-backend</name>
     <description>Demo project for Spring Boot</description>
 
@@ -100,6 +101,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>benjamin_sun.mywallbackend.MywallBackendApplication</mainClass>
+                    <executable>true</executable>
+                </configuration>
             </plugin>
         </plugins>
     </build>

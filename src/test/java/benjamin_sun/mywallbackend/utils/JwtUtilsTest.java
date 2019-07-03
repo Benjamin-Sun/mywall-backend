@@ -27,9 +27,9 @@ public class JwtUtilsTest extends MywallBackendApplicationTests{
 
     @Test
     public void parseJWT(){
-        String jwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJMaXphMiIsImlhdCI6MTU2MTk0MTM5OCwiZXhwIjoxNTYxOTQyNTk4fQ.OLORWpCZMKuxlb_hdm4AElsoEIAoY_ExJVHy9pG1MII";
-        System.out.println(JwtUtils.parseJWT(jwt));
-        Claims claims = JwtUtils.parseJWT(jwt);
-        System.out.println(claims.getSubject());
+//        String jwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJMaXphMiIsImlhdCI6MTU2MTk0MTM5OCwiZXhwIjoxNTYxOTQyNTk4fQ.OLORWpCZMKuxlb_hdm4AElsoEIAoY_ExJVHy9pG1MII";
+//        System.out.println(JwtUtils.parseJWT(jwt));
+//        Claims claims = JwtUtils.parseJWT(jwt);
+//        System.out.println(claims.getSubject());
     }
 }

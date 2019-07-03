@@ -25,13 +25,13 @@ public class UserServiceImpTest extends MywallBackendApplicationTests {
 
     @Test
     public void getOne() {
-        String id = "4028096b6b696984016b6969993f0000";
-//        System.out.println(userRepository.findById(id));
-        User user = userRepository.findById(id).get();
-        String savedPwd = user.getUserPwd();
-        System.out.println("数据库中保存的密码：" + savedPwd);
-        String realPwd = AesUtils.decrypt(savedPwd, "123456");
-        System.out.println("解密之后的密码：" + realPwd);
+//        String id = "4028096b6b696984016b6969993f0000";
+////        System.out.println(userRepository.findById(id));
+//        User user = userRepository.findById(id).get();
+//        String savedPwd = user.getUserPwd();
+//        System.out.println("数据库中保存的密码：" + savedPwd);
+//        String realPwd = AesUtils.decrypt(savedPwd, "123456");
+//        System.out.println("解密之后的密码：" + realPwd);
     }
 
     @Test
