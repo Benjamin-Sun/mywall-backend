@@ -13,13 +13,13 @@ public class AesUtilsTest extends MywallBackendApplicationTests {
     @Test
     public void encrypt() {
         String content = "test";
-        String password = "12345678";
+        String password = "123456";
         //加密
         String aesPwd = AesUtils.encrypt(content, password);
         System.out.println("加密前" + content);
         System.out.println("加密后" + aesPwd);
         //解密
-        String afterAesPwd = AesUtils.decrypt(aesPwd, password);
+        String afterAesPwd = AesUtils.decrypt("557967DDC0B5428138ADDBE752020E61", password);
         System.out.println("解密后" + afterAesPwd);
     }
 

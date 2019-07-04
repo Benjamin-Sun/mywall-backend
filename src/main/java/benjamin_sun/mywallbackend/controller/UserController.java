@@ -36,7 +36,7 @@ public class UserController {
      * @param userpwd
      * @return token
      */
-    @PostMapping("/getTokenByName")
+    @GetMapping("/getTokenByName")
     @ResponseBody
     public String getTokenByName(String username, String userpwd){
         return userService.getTokenByName(username, userpwd);
