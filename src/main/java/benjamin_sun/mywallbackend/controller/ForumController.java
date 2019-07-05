@@ -17,6 +17,11 @@ public class ForumController {
     @Autowired
     ForumService forumService;
 
+    /**
+     * 根据动态标题搜索
+     * @param forumName
+     * @return
+     */
     @GetMapping("/selectAllByForumName")
     @ResponseBody
     public List<Forum> selectAllByForumName(String forumName){
@@ -39,12 +44,23 @@ public class ForumController {
         return forumService.selectAllByUpdateTime();
     }
 
-    @GetMapping("/selectAllByUserName")
+    /**
+     * 根据用户名搜索
+     * @param userName
+     * @return
+     */
+    @GetMapping("/selectByUserName")
     @ResponseBody
     public List<Forum> selectAllByUserName(String userName){
-        return forumService.selectAllByName(userName);
+        return forumService.selectByUserName(userName);
     }
 
+    /**
+     * 添加动态
+     * @param forum
+     * @param request
+     * @return
+     */
     @PostMapping("/add")
     @ResponseBody
     public String addForum(Forum forum, HttpServletRequest request){
@@ -52,8 +68,8 @@ public class ForumController {
             String token = request.getHeader("Authorization");
             JwtUtils.parseJWT(token);
 
-            forumService.insert(forum);
-            return "添加成功";
+            Forum forum1 = forumService.insert(forum);
+            return "添加成功" + "\n" + forum1;
         } catch (ExpiredJwtException e){
             e.printStackTrace();
             return "token过期，请重新登陆";
@@ -63,6 +79,12 @@ public class ForumController {
         }
     }
 
+    /**
+     * 删除动态
+     * @param forumId
+     * @param request
+     * @return
+     */
     @GetMapping("/deleteThisForum")
     @ResponseBody
     public String deleteById(String forumId, HttpServletRequest request){

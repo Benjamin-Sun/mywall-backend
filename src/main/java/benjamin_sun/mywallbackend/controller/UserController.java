@@ -5,7 +5,9 @@ import benjamin_sun.mywallbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -38,8 +40,12 @@ public class UserController {
      */
     @GetMapping("/getTokenByName")
     @ResponseBody
-    public String getTokenByName(String username, String userpwd){
-        return userService.getTokenByName(username, userpwd);
+    public Map getTokenByName(String username, String userpwd){
+        System.out.println(username + "\n" + userpwd);
+        Map<String, String> map = new HashMap<>();
+        map.put("token", userService.getTokenByName(username, userpwd));
+        map.put("userId", userService.getOneByName(username).getUserId());
+        return map;
     }
 
     /**
@@ -50,6 +56,7 @@ public class UserController {
     @PostMapping("/addUser")
     @ResponseBody
     public String addUser(@RequestBody User user){
+        System.out.println(user);
         return userService.insert(user);
     }
 

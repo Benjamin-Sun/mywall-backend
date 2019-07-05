@@ -45,8 +45,8 @@ public class PictureController {
             picture.setPicName(picName);
             picture.setImagePath(filePath);
 
-            pictureService.insert(picture);
-            return "添加成功";
+            Picture picture1 = pictureService.insert(picture);
+            return "添加成功" + "\n" + picture1;
         } catch (ExpiredJwtException e){
             return "token过期，请重新登录";
         } catch (IllegalArgumentException e){

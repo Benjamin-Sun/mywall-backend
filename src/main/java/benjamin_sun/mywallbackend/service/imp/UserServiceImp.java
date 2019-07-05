@@ -29,6 +29,11 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public User getOneByName(String username) {
+        return userRepository.selectByUserName(username);
+    }
+
+    @Override
     public String insert(User user) {
         if (userRepository.selectByUserName(user.getUserName()) != null){
             return "用户名已存在";

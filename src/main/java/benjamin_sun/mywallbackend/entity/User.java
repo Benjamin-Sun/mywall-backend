@@ -1,12 +1,14 @@
 package benjamin_sun.mywallbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "userInfo")
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class User {
     @Id

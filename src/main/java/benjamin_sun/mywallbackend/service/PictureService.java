@@ -12,7 +12,7 @@ public interface PictureService {
 
     Picture getOne(String id);
 
-    int insert(Picture picture);
+    Picture insert(Picture picture);
 
     int deleteById(String id);
 }

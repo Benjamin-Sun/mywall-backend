@@ -35,15 +35,15 @@ public class PictureServiceImp implements PictureService {
     }
 
     @Override
-    public int insert(Picture picture) {
+    public Picture insert(Picture picture) {
         try {
             if(picture.getImagePath() == null){
-                return 0;
+                return null;
             }
-            pictureRepository.save(picture);
-            return 1;
+            Picture pic = pictureRepository.save(picture);
+            return pic;
         } catch (Exception e){
-            return 0;
+            return null;
         }
     }
 

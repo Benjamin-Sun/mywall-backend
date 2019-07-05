@@ -8,9 +8,9 @@ public interface ForumService {
     List<Forum> selectAllByName(String forumName);
     List<Forum> selectAllByCreatTime();
     List<Forum> selectAllByUpdateTime();
-    List<Forum> selectAllByUserName(String userName);
+    List<Forum> selectByUserName(String userName);
 
     void deleteById(String forumId);
 
-    void insert(Forum forum);
+    Forum insert(Forum forum);
 }

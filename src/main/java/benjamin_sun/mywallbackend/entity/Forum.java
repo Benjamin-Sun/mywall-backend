@@ -1,5 +1,6 @@
 package benjamin_sun.mywallbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "forumInfo")
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Forum implements Serializable {
     @Id
@@ -99,7 +101,18 @@ public class Forum implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public Forum(String forumName, String userId, String picId, String messageDisc) {
+        this.forumName = forumName;
+        this.userId = userId;
+        this.picId = picId;
+        this.messageDisc = messageDisc;
+        this.createTime = new Date();
+        this.updateTime = new Date();
+    }
+
     public Forum() {
+        this.createTime = new Date();
+        this.updateTime = new Date();
     }
 
     @Override

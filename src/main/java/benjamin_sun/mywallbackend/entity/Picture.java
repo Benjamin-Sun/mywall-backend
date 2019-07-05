@@ -1,5 +1,6 @@
 package benjamin_sun.mywallbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Table(name = "picInfo")
 @Entity
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Picture implements Serializable {
     @Id

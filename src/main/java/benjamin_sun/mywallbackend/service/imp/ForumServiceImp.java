@@ -33,8 +33,9 @@ public class ForumServiceImp implements ForumService{
     }
 
     @Override
-    public List<Forum> selectAllByUserName(String userName) {
+    public List<Forum> selectByUserName(String userName) {
         String userId = userRepository.selectByUserName(userName).getUserId();
+        System.out.println(userId);
         return forumRepository.selectAllByUser(userId);
     }
 
@@ -44,7 +45,7 @@ public class ForumServiceImp implements ForumService{
     }
 
     @Override
-    public void insert(Forum forum) {
-        forumRepository.save(forum);
+    public Forum insert(Forum forum) {
+        return forumRepository.save(forum);
     }
 }

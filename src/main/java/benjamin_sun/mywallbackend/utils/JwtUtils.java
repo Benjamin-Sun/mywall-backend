@@ -25,6 +25,13 @@ public class JwtUtils {
         SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
         return key;
     }
+
+    /**
+     * 生成token字符串
+     * @param subject
+     * @param ttlMillis
+     * @return
+     */
     public static String createJWT(String subject, long ttlMillis) {
         //jjwt已经发封装好了所有的请求头，这里是指定签名算法
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
