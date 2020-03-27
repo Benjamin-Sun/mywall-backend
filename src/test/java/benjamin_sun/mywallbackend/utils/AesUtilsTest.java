@@ -25,6 +25,7 @@ public class AesUtilsTest extends MywallBackendApplicationTests {
 
     @Test
     public void decrypt() {
-
+        Date date = new Date(2019, 2, 7);
+        System.out.println(date);
     }
 }

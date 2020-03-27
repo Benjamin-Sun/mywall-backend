@@ -31,6 +31,16 @@ public class PictureController {
     @PostMapping("/upload")
     @ResponseBody
     public String addAndUpload(String picName, Integer picCate, String userId, MultipartFile file, HttpServletRequest request) throws IOException {
+        System.out.println(picName);
+        System.out.println(picCate);
+        System.out.println(userId);
+        if (file == null){
+            System.out.println("空");
+        }else {
+            System.out.println("不空");
+        }
+        System.out.println(file.getSize());
+
         String token = request.getHeader("Authorization");
         String fileName = file.getOriginalFilename();
 
