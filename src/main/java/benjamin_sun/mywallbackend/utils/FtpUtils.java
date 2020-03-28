@@ -15,7 +15,7 @@ public class FtpUtils {
     private final static String ftpIp = "152.136.70.35";
     private final static String ftpUserName = "benjamin";
     private final static String ftpPwd = "12345678";
-    private final static String ftpPath = "/image/";
+    private final static String ftpPath = "/home/image/";
 
     /**
      * ftp连接上传
@@ -43,6 +43,6 @@ public class FtpUtils {
         String newName = ImageUtils.getFileName(fileName);
         ftpClient.storeFile(newName, inputStream);
         ftpClient.logout();
-        return  ftpPath + newName;
+        return  "/image/" + newName;
     }
 }
