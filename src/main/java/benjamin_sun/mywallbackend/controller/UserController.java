@@ -41,15 +41,21 @@ public class UserController {
     @GetMapping("/getTokenByName")
     @ResponseBody
     public Map getTokenByName(String username, String userpwd){
-        System.out.println(username + "\n" + userpwd);
-        if (userService.pwdIsWrite(username, userpwd)) {
+        try {
+            System.out.println(username + "\n" + userpwd);
+            if (userService.pwdIsWrite(username, userpwd)) {
+                Map<String, String> map = new HashMap<>();
+                map.put("token", userService.getTokenByName(username));
+                map.put("userId", userService.getOneByName(username).getUserId());
+                return map;
+            } else {
+                Map<String, String> map = new HashMap<>();
+                map.put("message", "密码错误");
+                return map;
+            }
+        } catch (Exception e){
             Map<String, String> map = new HashMap<>();
-            map.put("token", userService.getTokenByName(username));
-            map.put("userId", userService.getOneByName(username).getUserId());
-            return map;
-        }else {
-            Map<String, String> map = new HashMap<>();
-            map.put("userpwd","密码错误");
+            map.put("message", "用户名输入错误");
             return map;
         }
     }
