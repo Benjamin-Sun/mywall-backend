@@ -29,7 +29,7 @@ public class FtpUtils {
 //        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
         ftpClient.connect(ftpIp);
         ftpClient.login(ftpUserName, ftpPwd);
-        ftpClient.enterLocalPassiveMode();
+//        ftpClient.enterLocalPassiveMode();
         int replyCode = ftpClient.getReplyCode(); //是否成功登录服务器
         if(!FTPReply.isPositiveCompletion(replyCode)){
             System.out.println("connect failed...ftp服务器");

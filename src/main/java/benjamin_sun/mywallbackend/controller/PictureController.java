@@ -57,7 +57,8 @@ public class PictureController {
             picture.setImagePath(filePath);
 
             //添加内容审核
-            if (AipImageCensorUtils .imageCheck(file).get("conclusion") == "合规"){
+//            System.out.println((AipImageCensorUtils .imageCheck(file).get("conclusion")));
+            if (AipImageCensorUtils .imageCheck(file).get("conclusion").equals("合规")){
                 Picture picture1 = pictureService.insert(picture);
 //                return "添加成功" + "\n" + picture1;
                 return "添加成功";
