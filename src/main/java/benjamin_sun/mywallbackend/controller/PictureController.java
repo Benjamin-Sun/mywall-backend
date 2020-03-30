@@ -2,6 +2,7 @@ package benjamin_sun.mywallbackend.controller;
 
 import benjamin_sun.mywallbackend.entity.Picture;
 import benjamin_sun.mywallbackend.service.PictureService;
+import benjamin_sun.mywallbackend.utils.AipImageCensorUtils;
 import benjamin_sun.mywallbackend.utils.FtpUtils;
 import benjamin_sun.mywallbackend.utils.JwtUtils;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -55,8 +56,14 @@ public class PictureController {
             picture.setPicName(picName);
             picture.setImagePath(filePath);
 
-            Picture picture1 = pictureService.insert(picture);
-            return "添加成功" + "\n" + picture1;
+            //添加内容审核
+            if (AipImageCensorUtils .imageCheck(file).get("conclusion") == "合规"){
+                Picture picture1 = pictureService.insert(picture);
+//                return "添加成功" + "\n" + picture1;
+                return "添加成功";
+            } else {
+                return "图片内包含违规内容，请重新选择";
+            }
         } catch (ExpiredJwtException e){
             return "token过期，请重新登录";
         } catch (IllegalArgumentException e){
