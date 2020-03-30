@@ -59,7 +59,7 @@ public class PictureController {
             //添加内容审核
 //            System.out.println((AipImageCensorUtils .imageCheck(file).get("conclusion")));
             if (AipImageCensorUtils .imageCheck(file).get("conclusion").equals("合规")){
-                Picture picture1 = pictureService.insert(picture);
+                pictureService.insert(picture);
 //                return "添加成功" + "\n" + picture1;
                 return "添加成功";
             } else {

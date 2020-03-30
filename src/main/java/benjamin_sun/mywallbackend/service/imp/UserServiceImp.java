@@ -50,13 +50,25 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public String getTokenByName(String username, String userpwd){
+    public String getTokenByName(String username){
+        return JwtUtils.createJWT(username, 20 * 60 * 1000);
+//        User user = userRepository.selectByUserName(username);
+//        String userRealPwd = AesUtils.decrypt(user.getUserPwd(), AES_PWD);
+//        if (userRealPwd.equals(userpwd)){
+//            return JwtUtils.createJWT(username, 20 * 60 * 1000);
+//        }else {
+//            return "wrong password " + userRealPwd + " " + userpwd + "\n" + user;
+//        }
+    }
+
+    @Override
+    public boolean pwdIsWrite(String username, String userpwd){
         User user = userRepository.selectByUserName(username);
         String userRealPwd = AesUtils.decrypt(user.getUserPwd(), AES_PWD);
         if (userRealPwd.equals(userpwd)){
-            return JwtUtils.createJWT(username, 20 * 60 * 1000);
+            return true;
         }else {
-            return "wrong password " + userRealPwd + " " + userpwd + "\n" + user;
+            return false;
         }
     }
 }

@@ -16,5 +16,7 @@ public interface UserService {
 
     void deleteById(String id);
 
-    String getTokenByName(String username, String userpwd);
+    String getTokenByName(String username);
+
+    boolean pwdIsWrite(String username, String userpwd);
 }

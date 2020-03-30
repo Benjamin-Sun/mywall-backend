@@ -42,10 +42,16 @@ public class UserController {
     @ResponseBody
     public Map getTokenByName(String username, String userpwd){
         System.out.println(username + "\n" + userpwd);
-        Map<String, String> map = new HashMap<>();
-        map.put("token", userService.getTokenByName(username, userpwd));
-        map.put("userId", userService.getOneByName(username).getUserId());
-        return map;
+        if (userService.pwdIsWrite(username, userpwd)) {
+            Map<String, String> map = new HashMap<>();
+            map.put("token", userService.getTokenByName(username));
+            map.put("userId", userService.getOneByName(username).getUserId());
+            return map;
+        }else {
+            Map<String, String> map = new HashMap<>();
+            map.put("userpwd","密码错误");
+            return map;
+        }
     }
 
     /**
